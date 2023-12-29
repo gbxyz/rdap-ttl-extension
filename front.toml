@@ -1,0 +1,28 @@
+%%%
+title = "RDAP Extension for DNS Time-To-Live (TTL Values)"
+abbrev="RDAP TTL Extension"
+ipr= "trust200902"
+area = "Internet"
+workgroup = "Registration Extensions (REGEXT)"
+submissiontype = "IETF"
+
+[seriesInfo]
+name = "Internet-Draft"
+value = "draft-brown-rdap-ttl-extension"
+stream = "IETF"
+status = "standard"
+
+[[author]]
+initials="G."
+surname="Brown"
+fullname="Gavin Brown"
+organization="ICANN"
+    [author.address]
+    email="gavin.brown@icann.org"
+    [author.address.postal]
+    street="12025 Waterfront Drive, Suite 300"
+    city="Los Angeles"
+    region="CA"
+    code="90094-2536"
+    country = "US"
+%%%
