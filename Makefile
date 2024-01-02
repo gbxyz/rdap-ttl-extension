@@ -1,12 +1,10 @@
-VERSION = "00"
 DOC = "draft-brown-rdap-ttl-extension"
-SRC = "rdap-ttl-extension.md"
+VERSION = "00"
 XML = "$(DOC)-$(VERSION).xml"
 
 all: build
 
 build:
-	mmark "$(SRC)" > "$(XML)"
-
-	xml2rfc --v3 --text "$(XML)"
-	xml2rfc --v3 --html "$(XML)"
+	./xi.pl "$(XML).in" > "$(XML)"
+	xml2rfc --draft-revisions --text "$(XML)"
+	xml2rfc --draft-revisions --html "$(XML)"
