@@ -5,6 +5,6 @@ XML = "$(DOC)-$(VERSION).xml"
 all: build
 
 build:
-	./xi.pl "$(XML).in" > "$(XML)"
+	./xi.pl "draft.xml.in" > "$(XML)"
 	xml2rfc --draft-revisions --text "$(XML)"
 	xml2rfc --draft-revisions --html "$(XML)"
