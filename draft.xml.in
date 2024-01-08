@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rfc version="3"
   ipr="trust200902"
-  docName="draft-brown-rdap-ttl-extension"
+  docName="draft-brown-rdap-ttl-extension-00"
   submissionType="IETF"
   category="std"
   xml:lang="en"
@@ -73,38 +73,106 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 <section anchor="rdap-response-specification"><name>RDAP Response Specification</name>
 <t>
-Servers which support this extension <bcp14>MUST</bcp14> include a <tt>ttl_values</tt> object in any domain and nameserver objects included in RDAP responses.
+Servers which support this extension <bcp14>MUST</bcp14> include a <tt>ttl</tt> property in any domain and nameserver objects included in RDAP responses.
 </t>
 
 <t>
-The <tt>ttl_values</tt> object has property names which are DNS record types, and values which are integers representing the TTL values used for those record types.
+The <tt>ttl</tt> property is an array of objects.
+These objects have the following properties:
 </t>
+
+<ul>
+<li>A <tt>type</tt> property, which is an array of DNS record type mnemonics;</li>
+<li>A <tt>value</tt> property, which is an integer indicated the TTL value for those DNS record types;</li>
+<li><bcp14>OPTIONAL</bcp14> <tt>min</tt>, <tt>max</tt> and <tt>default</tt> properties, which are integers indicating the minimum, maximum and default TTL values, respectively;</li>
+<li>An <bcp14>OPTIONAL</bcp14> <tt>remarks</tt> property, which is an array of remarks (see <xref section="4.3" sectionFormat="of" target="RFC9083"/>); and</li>
+<li>An <bcp14>OPTIONAL</bcp14> <tt>events</tt> property, which is an array of events (see <xref section="4.5" sectionFormat="of" target="RFC9083"/>).</li>
+</ul>
 
 <t>
 Example domain object:
 </t>
 
 <sourcecode><![CDATA[{
-    "objectClassName": "domain",
-    "ldhName": "example.com",
-    "ttl_values": {
-        "NS": 3600,
-        "DS": 60
+  "objectClassName": "domain",
+  "ldhName": "example.com",
+  "ttl": [
+    {
+      "types": [
+        "NS"
+      ],
+      "value": 3600,
+      "remarks": [
+        {
+          "description": [
+            "The .example registry does not permit NS record TTL ",
+            "values to be changed."
+          ]
+        }
+      ]
+    },
+    {
+      "types": [
+        "DS"
+      ],
+      "value": 300,
+      "min": 60,
+      "default": 3600,
+      "max": 86400,
+      "events": [
+        {
+          "eventAction": "last updated",
+          "eventActor": "example-registry",
+          "eventDate": "2024-01-08T13:52:18Z"
+        }
+      ],
+      "remarks": [
+        {
+          "description": [
+            "For more information about the .example registry policy "
+            "relating to DS record TTL changes, see https://example.com"
+          ],
+          "links": [
+            {
+              "rel": "related",
+              "title": ".Example Registry DNS TTL Policy",
+              "value": "https://example.com",
+              "href": "https://example.com"
+            }
+          ]
+        }
+      ]
     }
-}]]></sourcecode>
+  ]
+}
+]]></sourcecode>
 
 <t>
 Example nameserver object:
 </t>
 
 <sourcecode><![CDATA[{
-    "objectClassName": "nameserver",
-    "ldhName": "ns1.example.com",
-    "ttl_values": {
-        "A": 86400,
-        "AAAA": 172800
+  "objectClassName": "nameserver",
+  "ldhName": "ns1.example.com",
+  "ttl": [
+    {
+      "types": [
+        "A",
+        "AAAA"
+      ],
+      "value": 86400,
+      "remarks": [
+        {
+          "description": [
+            "The .example registry does not permit NS record TTL ",
+            "values to be changed."
+          ]
+        }
+      ]
     }
-}]]></sourcecode>
+  ]
+}
+]]></sourcecode>
 
 <section anchor="rdap-conformance"><name>RDAP Conformance</name><t>
 Servers returning responses containing TTL values <bcp14>MUST</bcp14> include the string &quot;<tt>ttl</tt>&quot; in the <tt>rdapConformance</tt> array.
