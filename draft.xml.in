@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rfc version="3"
   ipr="trust200902"
-  docName="draft-brown-rdap-ttl-extension-00"
+  docName="draft-brown-rdap-ttl-extension-01"
   submissionType="IETF"
   category="std"
   xml:lang="en"
@@ -58,7 +58,7 @@ This document describes how TTL information can be included in domain and namese
 </t>
 
 <t>
-This document is complementary to the EPP TTL extension (<xref target="I-D.ietf-regext-epp-ttl"></xref>), but registry operators do not need to implement that extension in their EPP server in order to implement this RDAP extension.
+This document is complementary to the EPP TTL extension (<xref target="I-D.ietf-regext-epp-ttl"/>), but registry operators do not need to implement that extension in their EPP server in order to implement this RDAP extension.
 </t>
 
 </section>
@@ -82,9 +82,8 @@ These objects have the following properties:
 </t>
 
 <ul>
-<li>A <tt>type</tt> property, which is an array of DNS record type mnemonics;</li>
+<li>A <tt>types</tt> property, which is an array of DNS record type mnemonics;</li>
 <li>A <tt>value</tt> property, which is an integer indicated the TTL value for those DNS record types;</li>
-<li><bcp14>OPTIONAL</bcp14> <tt>min</tt>, <tt>max</tt> and <tt>default</tt> properties, which are integers indicating the minimum, maximum and default TTL values, respectively;</li>
 <li>An <bcp14>OPTIONAL</bcp14> <tt>remarks</tt> property, which is an array of remarks (see <xref section="4.3" sectionFormat="of" target="RFC9083"/>); and</li>
 <li>An <bcp14>OPTIONAL</bcp14> <tt>events</tt> property, which is an array of events (see <xref section="4.5" sectionFormat="of" target="RFC9083"/>).</li>
 </ul>
@@ -116,9 +115,6 @@ Example domain object:
         "DS"
       ],
       "value": 300,
-      "min": 60,
-      "default": 3600,
-      "max": 86400,
       "events": [
         {
           "eventAction": "last updated",
@@ -164,8 +160,8 @@ Example nameserver object:
       "remarks": [
         {
           "description": [
-            "The .example registry does not permit NS record TTL ",
-            "values to be changed."
+            "The .example registry does not permit TTL ",
+            "values for nameservers to be changed."
           ]
         }
       ]
