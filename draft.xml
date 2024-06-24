@@ -226,7 +226,7 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 <name>Changes from 00 to 01</name>
 <ol>
 <li>Extension property name renamed to <tt>ttl</tt>.</li>
-<li>The extension data structure is now an array allowing common TTL values to be mapped to multiple DNS record types.</li>
+<li>The extension data structure is now an array allowing common TTL values, remarks and events to be mapped to multiple DNS record types.</li>
 <li>The extension data structure may now include remarks and events.</li>
 <li>Added normative text regarding the value of DNS record mnemonics and TTL values.</li>
 </ol>
