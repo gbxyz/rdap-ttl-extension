@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rfc version="3"
+
+<!DOCTYPE rfc [
+    <!ENTITY RFC2119 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+    <!ENTITY RFC8174 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
+    <!ENTITY RFC9083 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
+]>
+
+<?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
+
+<?rfc strict="yes" ?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+<?rfc comments="yes" ?>
+<?rfc inline="yes" ?>
+
+<rfc
+  category="std"
+  docName=""
   ipr="trust200902"
-  xml:lang="en"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  indexInclude="true"
-  consensus="true"
   submissionType="IETF"
-  category="std">
+  consensus="true"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
 
 <front>
   <title abbrev="RDAP TTL Extension">RDAP Extension for DNS Time-To-Live (TTL Values)</title>
-  <seriesInfo
-    value=""
-    status="standard"
-    name="Internet-Draft"/>
   <author
     initials="G."
     surname="Brown"
@@ -225,14 +239,21 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 <back>
   <references>
     <name>Normative References</name>
-    <xi:include parse="xml" href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-    <xi:include parse="xml" href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
-    <xi:include parse="xml" href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
+    &RFC2119;
+    &RFC8174;
+    &RFC9083;
   </references>
 
   <references>
     <name>Informative References</name>
-    <xi:include parse="xml" href="https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.draft-ietf-regext-epp-ttl-04.xml"/>
+    <reference anchor="I-D.ietf-regext-epp-ttl" target="https://datatracker.ietf.org/api/v1/doc/document/draft-ietf-regext-epp-ttl/">
+      <front>
+        <title>Extensible Provisioning Protocol (EPP) mapping for DNS Time-To-Live (TTL) values</title>
+        <author fullname="Gavin Brown"/>
+        <date day="24" month="June" year="2024"/>
+      </front>
+      <seriesInfo name="Internet-Draft" value="draft-ietf-regext-epp-ttl-14"/>
+    </reference>
   </references>
 </back>
 
