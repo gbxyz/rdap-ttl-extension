@@ -224,6 +224,13 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 <section anchor="changes"><name>Change Log</name>
 
 <section>
+<name>Changes from 01 to 02</name>
+<ol>
+<li>Update reference to the EPP extension.</li>
+</ol>
+</section>
+
+<section>
 <name>Changes from 00 to 01</name>
 <ol>
 <li>Extension property name renamed to <tt>ttl</tt>.</li>
@@ -251,9 +258,9 @@ IANA is requested to register the following value in the RDAP Extensions Registr
       <front>
         <title>Extensible Provisioning Protocol (EPP) mapping for DNS Time-To-Live (TTL) values</title>
         <author fullname="Gavin Brown"/>
-        <date day="24" month="June" year="2024"/>
+        <date day="16" month="December" year="2024"/>
       </front>
-      <seriesInfo name="Internet-Draft" value="draft-ietf-regext-epp-ttl-14"/>
+      <seriesInfo name="Internet-Draft" value="draft-ietf-regext-epp-ttl-17"/>
     </reference>
   </references>
 </back>
