@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE rfc [
-    <!ENTITY RFC2119 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-    <!ENTITY RFC8174 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
-    <!ENTITY RFC9083 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
+  <!ENTITY RFC2119 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+  <!ENTITY RFC5730 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml">
+  <!ENTITY RFC8174 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
+  <!ENTITY RFC9083 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
+  <!ENTITY RFC9803 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9803.xml">
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
@@ -20,7 +22,7 @@
 
 <rfc
   category="std"
-  docName="draft-brown-rdap-ttl-extension-02"
+  docName="draft-brown-rdap-ttl-extension-03"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -70,7 +72,7 @@ This document describes how TTL information can be included in domain and namese
 </t>
 
 <t>
-This document is complementary to the EPP TTL extension (<xref target="I-D.ietf-regext-epp-ttl"/>), but registry operators do not need to implement that extension in their EPP server in order to implement this RDAP extension.
+This document is complementary to the <xref target="RFC5730">Extensible Provisioning Protocol</xref> (EPP) <xref target="RFC9803">Mapping for DNS Time-to-Live (TTL) Values</xref>, but registry operators do not need to implement that extension in their EPP server in order to implement this RDAP extension.
 </t>
 
 </section>
@@ -102,7 +104,7 @@ These objects have the following properties:
 
 <t>DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals. Each DNS record type <bcp14>MUST</bcp14> only appear once in a response.</t>
 
-<t>TTL values MUST be unsigned integers in the range 0-2,147,483,647.</t>
+<t>TTL values <bcp14>MUST</bcp14> be unsigned integers in the range 0-2,147,483,647.</t>
 
 <t>
 Example domain object:
@@ -224,6 +226,13 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 <section anchor="changes"><name>Change Log</name>
 
 <section>
+<name>Changes from 02 to 03</name>
+<ol>
+<li>Update reference to <xref target="RFC9803"/>.</li>
+</ol>
+</section>
+
+<section>
 <name>Changes from 01 to 02</name>
 <ol>
 <li>Update reference to the EPP extension.</li>
@@ -254,14 +263,8 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 
   <references>
     <name>Informative References</name>
-    <reference anchor="I-D.ietf-regext-epp-ttl" target="https://datatracker.ietf.org/api/v1/doc/document/draft-ietf-regext-epp-ttl/">
-      <front>
-        <title>Extensible Provisioning Protocol (EPP) mapping for DNS Time-To-Live (TTL) values</title>
-        <author fullname="Gavin Brown"/>
-        <date day="16" month="December" year="2024"/>
-      </front>
-      <seriesInfo name="Internet-Draft" value="draft-ietf-regext-epp-ttl-17"/>
-    </reference>
+    &RFC5730;
+    &RFC9803;
   </references>
 </back>
 
