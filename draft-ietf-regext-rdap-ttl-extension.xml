@@ -3,9 +3,11 @@
 <!DOCTYPE rfc [
   <!ENTITY RFC2119 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
   <!ENTITY RFC5730 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml">
+  <!ENTITY RFC7481 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7481.xml">
   <!ENTITY RFC8174 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
   <!ENTITY RFC9083 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
   <!ENTITY RFC9803 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9803.xml">
+  <!ENTITY draft-ietf-regext-rdap-extensions SYSTEM "https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-regext-rdap-extensions.xml">
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
@@ -22,33 +24,40 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-00"
+  docName="draft-ietf-regext-rdap-ttl-extension-01"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
   xmlns:xi="http://www.w3.org/2001/XInclude">
 
 <front>
-  <title abbrev="RDAP TTL Extension">RDAP Extension for DNS Time-To-Live (TTL Values)</title>
-  <author
-    initials="G."
-    surname="Brown"
-    fullname="Gavin Brown">
-    <organization>ICANN</organization>
-    <address>
-      <postal>
-        <street>12025 Waterfront Drive, Suite 300</street>
-        <city>Los Angeles</city>
-        <code>90094-2536</code>
-        <country>US</country>
-        <region>CA</region>
-      </postal>
-      <email>gavin.brown@icann.org</email>
-    </address>
-  </author>
-  <date/>
-  <area>Internet</area>
-  <workgroup>Registration Extensions (REGEXT)</workgroup>
+
+<title abbrev="RDAP TTL Extension">
+  RDAP Extension for DNS Time-To-Live (TTL Values)
+</title>
+
+<author
+  initials="G."
+  surname="Brown"
+  fullname="Gavin Brown">
+  <organization>ICANN</organization>
+  <address>
+    <postal>
+      <street>12025 Waterfront Drive, Suite 300</street>
+      <city>Los Angeles</city>
+      <code>90094-2536</code>
+      <country>US</country>
+      <region>CA</region>
+    </postal>
+    <email>gavin.brown@icann.org</email>
+  </address>
+</author>
+
+<date/>
+
+<area>Internet</area>
+
+<workgroup>Registration Extensions (REGEXT)</workgroup>
 
 <abstract><t>
 This document describes an extension to the Registration Data Access Protocol (<xref target="RFC9083"/>) which allows the Time-To-Live (TTL) values for relevant DNS record types to be included in RDAP responses.
@@ -63,6 +72,7 @@ The source for this draft, and an issue tracker, may can be found at <eref targe
 <middle>
 
 <section anchor="introduction"><name>Introduction</name>
+
 <t>
 While <xref target="RFC9083"></xref> allows RDAP server operators to provide information about the content of the <tt>NS</tt>, <tt>DS</tt>, <tt>A</tt> and <tt>AAAA</tt> record(s) which are published in the DNS for a given registry object (domain or host object), it does not provide a mechanism to allow the Time-To-Live (TTL) values of those records to be included in responses.
 </t>
@@ -75,7 +85,7 @@ This document describes how TTL information can be included in domain and namese
 This document is complementary to the <xref target="RFC5730">Extensible Provisioning Protocol</xref> (EPP) <xref target="RFC9803">Mapping for DNS Time-to-Live (TTL) Values</xref>, but registry operators do not need to implement that extension in their EPP server in order to implement this RDAP extension.
 </t>
 
-</section>
+</section><!-- introduction -->
 
 <section><name>Conventions used in this document</name>
 
@@ -83,16 +93,19 @@ This document is complementary to the <xref target="RFC5730">Extensible Provisio
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown here.
 </t>
 
-</section>
+</section><!-- conventions -->
 
-<section anchor="rdap-response-specification"><name>RDAP Response Specification</name>
+<section anchor="rdap-response-specification">
+
+<name>RDAP Response Specification</name>
+
 <t>
-Servers which support this extension <bcp14>MUST</bcp14> include a <tt>ttl</tt> property in any domain and nameserver objects included in RDAP responses.
+Servers which support this extension <bcp14>MAY</bcp14> include a <tt>ttl0_data</tt> property in any domain and nameserver objects included in RDAP responses.
 </t>
 
 <t>
-The <tt>ttl</tt> property is an array of objects.
-These objects have the following properties:
+The <tt>ttl0_data</tt> property is an array of TTL objects,
+which have the following properties:
 </t>
 
 <ul>
@@ -102,7 +115,7 @@ These objects have the following properties:
 <li>An <bcp14>OPTIONAL</bcp14> <tt>events</tt> property, which is an array of events (see <xref section="4.5" sectionFormat="of" target="RFC9083"/>).</li>
 </ul>
 
-<t>DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals. Each DNS record type <bcp14>MUST</bcp14> only appear once in a response.</t>
+<t>DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals. Each DNS record type <bcp14>MUST</bcp14> only appear once in each TTL object.</t>
 
 <t>TTL values <bcp14>MUST</bcp14> be unsigned integers in the range 0-2,147,483,647.</t>
 
@@ -113,7 +126,7 @@ Example domain object:
 <sourcecode><![CDATA[{
   "objectClassName": "domain",
   "ldhName": "example.com",
-  "ttl": [
+  "ttl0_data": [
     {
       "types": [
         "NS"
@@ -137,7 +150,7 @@ Example domain object:
         {
           "eventAction": "last updated",
           "eventActor": "example-registry",
-          "eventDate": "2024-01-08T13:52:18Z"
+          "eventDate": "2024-01T13:52:18Z"
         }
       ],
       "remarks": [
@@ -169,7 +182,7 @@ Example nameserver object:
 <sourcecode><![CDATA[{
   "objectClassName": "nameserver",
   "ldhName": "ns1.example.com",
-  "ttl": [
+  "ttl0_data": [
     {
       "types": [
         "A",
@@ -189,20 +202,28 @@ Example nameserver object:
 }
 ]]></sourcecode>
 
-<section anchor="rdap-conformance"><name>RDAP Conformance</name><t>
-Servers returning responses containing TTL values <bcp14>MUST</bcp14> include the string &quot;<tt>ttl</tt>&quot; in the <tt>rdapConformance</tt> array.
-</t></section>
+<section anchor="rdap-conformance">
 
-</section>
+<name>RDAP Conformance</name>
 
-<section anchor="iana-considerations"><name>IANA Considerations</name>
+<t>
+Servers returning responses containing TTL values <bcp14>MUST</bcp14> include the string &quot;<tt>ttl0</tt>&quot; in the <tt>rdapConformance</tt> array.
+</t>
+
+</section><!-- conformance -->
+
+</section><!-- specification -->
+
+<section anchor="iana-considerations">
+
+<name>IANA Considerations</name>
 
 <t>
 IANA is requested to register the following value in the RDAP Extensions Registry:
 </t>
 
 <t>
-<strong>Extension identifier:</strong> <tt>ttl</tt>
+<strong>Extension identifier:</strong> <tt>ttl0</tt>
 </t>
 
 <t>
@@ -221,9 +242,42 @@ IANA is requested to register the following value in the RDAP Extensions Registr
 <strong>Intended usage:</strong> this extension describes how DNS TTL values can be included in RDAP responses.
 </t>
 
-</section>
+</section><!-- iana considerations -->
+
+<section anchor="security-considerations">
+
+<name>Security Considerations</name>
+
+<t>
+Security services for the extension specified in this document are described in <xref target="RFC7481"/>.
+</t>
+
+<t>
+This document only concerns itself with the representation of configure TTL
+values for domain and host objects. The security implications of those values
+are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>.
+</t>
+
+</section><!-- security considerations -->
 
 <section anchor="changes"><name>Change Log</name>
+
+<section>
+<name>Changes from 00 to 01</name>
+<ol>
+<li>Updated the extension identifier and extension property name to align with the current best practices in <xref target="I-D.ietf-regext-rdap-extensions"/>.</li>
+<li>Added <xref target="security-considerations"/>.</li>
+<li>Changed <bcp14>MUST</bcp14> to <bcp14>MAY</bcp14> in the first paragraph of <xref target="rdap-response-specification"/>.</li>
+<li>Reduce ambiguity around the repetition of DNS record types in responses.</li>
+</ol>
+</section>
+
+<section>
+<name>Changes from draft-brown-rdap-ttl-extension-03 to draft-ietf-regext-rdap-ttl-extension-00</name>
+<ol>
+<li>Name change only.</li>
+</ol>
+</section>
 
 <section>
 <name>Changes from 02 to 03</name>
@@ -257,6 +311,7 @@ IANA is requested to register the following value in the RDAP Extensions Registr
   <references>
     <name>Normative References</name>
     &RFC2119;
+    &RFC7481;
     &RFC8174;
     &RFC9083;
   </references>
@@ -265,6 +320,7 @@ IANA is requested to register the following value in the RDAP Extensions Registr
     <name>Informative References</name>
     &RFC5730;
     &RFC9803;
+    &draft-ietf-regext-rdap-extensions;
   </references>
 </back>
 
