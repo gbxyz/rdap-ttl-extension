@@ -167,7 +167,6 @@ Example domain object:
             {
               "rel": "related",
               "title": ".Example Registry DNS TTL Policy",
-              "value": "https://example.com",
               "href": "https://example.com"
             }
           ]
@@ -268,7 +267,8 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 <section>
 <name>Changes from 01 to 02</name>
 <ol>
-<li>Include reference to <xref target="IANA-RRTYPES"/> in <xref target="rdap-response-specification"/>.</li>
+<li>Include reference to <xref target="IANA-RRTYPES"/> in <xref target="rdap-response-specification"/> (thanks Jasdip Singh).</li>
+<li>Removed the <tt>value</tt> member of the link object in the example domain object so that it conforms with web linking practice (also thanks Jasdip Singh).</li>
 </ol>
 </section>
 
