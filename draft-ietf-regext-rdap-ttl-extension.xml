@@ -24,7 +24,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-01"
+  docName="draft-ietf-regext-rdap-ttl-extension-02"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -115,7 +115,10 @@ which have the following properties:
 <li>An <bcp14>OPTIONAL</bcp14> <tt>events</tt> property, which is an array of events (see <xref section="4.5" sectionFormat="of" target="RFC9083"/>).</li>
 </ul>
 
-<t>DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals. Each DNS record type <bcp14>MUST</bcp14> only appear once in each TTL object.</t>
+<t>
+DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals and <bcp14>MUST</bcp14> be registered with IANA in <xref target="IANA-RRTYPES"/>.
+Each DNS record type <bcp14>MUST</bcp14> only appear once in each TTL object.
+</t>
 
 <t>TTL values <bcp14>MUST</bcp14> be unsigned integers in the range 0-2,147,483,647.</t>
 
@@ -260,7 +263,14 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 
 </section><!-- security considerations -->
 
-<section anchor="changes"><name>Change Log</name>
+<section anchor="changes" removeInRFC="true"><name>Change Log</name>
+
+<section>
+<name>Changes from 01 to 02</name>
+<ol>
+<li>Include reference to <xref target="IANA-RRTYPES"/> in <xref target="rdap-response-specification"/>.</li>
+</ol>
+</section>
 
 <section>
 <name>Changes from 00 to 01</name>
@@ -314,6 +324,14 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
     &RFC7481;
     &RFC8174;
     &RFC9083;
+    <reference anchor="IANA-RRTYPES" target="https://www.iana.org/assignments/dns-parameters#dns-parameters-4">
+      <front>
+        <title>Resource Record (RR) TYPEs</title>
+        <author>
+          <organization>IANA</organization>
+        </author>
+      </front>
+    </reference>
   </references>
 
   <references>
