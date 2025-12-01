@@ -263,6 +263,7 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 <name>Changes from 02 to 03</name>
 <ol>
 <li>Switch to array model to object model, based on WG feedback.</li>
+<li>Added <xref target="thx"/>.</li>
 </ol>
 </section>
 
@@ -317,7 +318,7 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 
 </section>
 
-<section>
+<section anchor="thx">
 <name>Acknowledgements</name>
 <t>
 The author wishes to thank Andy Newton, Pawel Kowalik, and Maarten Wullink for their constructive feedback and advice during the development of this document.
