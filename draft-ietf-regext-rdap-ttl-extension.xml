@@ -24,7 +24,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-02"
+  docName="draft-ietf-regext-rdap-ttl-extension-03"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -263,6 +263,12 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 </section><!-- security considerations -->
 
 <section anchor="changes" removeInRFC="true"><name>Change Log</name>
+
+<section>
+<name>Changes from 02 to 03</name>
+<ol>
+</ol>
+</section>
 
 <section>
 <name>Changes from 01 to 02</name>
