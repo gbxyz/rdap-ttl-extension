@@ -120,7 +120,7 @@ Example domain object:
 
 <sourcecode><![CDATA[{
   "objectClassName": "domain",
-  "ldhName": "example.com",
+  "ldhName": "domain.example",
   "ttl0_data": {
     "values": {
       "NS": 3600,
@@ -131,13 +131,13 @@ Example domain object:
         "description": [
           "For more information about the .example",
           " registry policy relating to DS record TTL changes,",
-          "see https://example.com"
+          "see https://domain.example"
         ],
         "links": [
           {
             "rel": "related",
             "title": ".Example Registry DNS TTL Policy",
-            "href": "https://example.com"
+            "href": "https://domain.example"
           }
         ]
       }
@@ -151,7 +151,7 @@ Example nameserver object:
 
 <sourcecode><![CDATA[{
   "objectClassName": "nameserver",
-  "ldhName": "ns1.example.com",
+  "ldhName": "ns1.domain.example",
   "ttl0_data": {
     "values": {
       "A": 86400,
