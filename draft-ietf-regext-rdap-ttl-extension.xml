@@ -318,28 +318,33 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 </middle>
 
 <back>
-  <references>
-    <name>Normative References</name>
-    &RFC2119;
-    &RFC7481;
-    &RFC8174;
-    &RFC9083;
-    <reference anchor="IANA-RRTYPES" target="https://www.iana.org/assignments/dns-parameters#dns-parameters-4">
-      <front>
-        <title>Resource Record (RR) TYPEs</title>
-        <author>
-          <organization>IANA</organization>
-        </author>
-      </front>
-    </reference>
-  </references>
 
-  <references>
-    <name>Informative References</name>
-    &RFC5730;
-    &RFC9803;
-    &draft-ietf-regext-rdap-extensions;
-  </references>
+<references>
+<name>Normative References</name>
+
+&RFC2119;
+&RFC7481;
+&RFC8174;
+&RFC9083;
+
+<reference anchor="IANA-RRTYPES" target="https://www.iana.org/assignments/dns-parameters#dns-parameters-4">
+  <front>
+    <title>Resource Record (RR) TYPEs</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+  </front>
+</reference>
+</references>
+
+<references>
+<name>Informative References</name>
+
+&RFC5730;
+&RFC9803;
+&draft-ietf-regext-rdap-extensions;
+</references>
+
 </back>
 
 </rfc>
