@@ -6,8 +6,10 @@
   <!ENTITY RFC7481 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7481.xml">
   <!ENTITY RFC8174 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
   <!ENTITY RFC9083 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
+  <!ENTITY RFC9364 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9364.xml">
   <!ENTITY RFC9803 SYSTEM "https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9803.xml">
   <!ENTITY draft-ietf-regext-rdap-extensions SYSTEM "https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-regext-rdap-extensions.xml">
+  <!ENTITY draft-ietf-deleg SYSTEM "https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-deleg.xml">
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
@@ -104,23 +106,13 @@ Servers which support this extension <bcp14>MAY</bcp14> include a <tt>ttl0_data<
 </t>
 
 <t>
-The <tt>ttl0_data</tt> property is an array of TTL objects,
-which have the following properties:
+The <tt>ttl0_data</tt> property is an object which has the following properties:
 </t>
 
 <ul>
-<li>A <tt>types</tt> property, which is an array of DNS record type mnemonics;</li>
-<li>A <tt>value</tt> property, which is an unsigned integer indicated the TTL value for those DNS record types;</li>
-<li>An <bcp14>OPTIONAL</bcp14> <tt>remarks</tt> property, which is an array of remarks (see <xref section="4.3" sectionFormat="of" target="RFC9083"/>); and</li>
-<li>An <bcp14>OPTIONAL</bcp14> <tt>events</tt> property, which is an array of events (see <xref section="4.5" sectionFormat="of" target="RFC9083"/>).</li>
+<li>A <tt>values</tt> property, which is an object which maps DNS record type mnemonics to TTL values;</li>
+<li>An <bcp14>OPTIONAL</bcp14> <tt>remarks</tt> property, which is an array of remarks (see <xref section="4.3" sectionFormat="of" target="RFC9083"/>).</li>
 </ul>
-
-<t>
-DNS record type mnemonics <bcp14>MUST</bcp14> be in all capitals and <bcp14>MUST</bcp14> be registered with IANA in <xref target="IANA-RRTYPES"/>.
-Each DNS record type <bcp14>MUST</bcp14> only appear once in each TTL object.
-</t>
-
-<t>TTL values <bcp14>MUST</bcp14> be unsigned integers in the range 0-2,147,483,647.</t>
 
 <t>
 Example domain object:
@@ -129,53 +121,29 @@ Example domain object:
 <sourcecode><![CDATA[{
   "objectClassName": "domain",
   "ldhName": "example.com",
-  "ttl0_data": [
-    {
-      "types": [
-        "NS"
-      ],
-      "value": 3600,
-      "remarks": [
-        {
-          "description": [
-            "The .example registry does not permit",
-            "NS record TTL values to be changed."
-          ]
-        }
-      ]
+  "ttl0_data": {
+    "values": {
+      "NS": 3600,
+      "DS": 300
     },
-    {
-      "types": [
-        "DS"
-      ],
-      "value": 300,
-      "events": [
-        {
-          "eventAction": "last updated",
-          "eventActor": "example-registry",
-          "eventDate": "2024-01T13:52:18Z"
-        }
-      ],
-      "remarks": [
-        {
-          "description": [
-            "For more information about the .example",
-            " registry policy relating to DS record TTL changes,",
-            "see https://example.com"
-          ],
-          "links": [
-            {
-              "rel": "related",
-              "title": ".Example Registry DNS TTL Policy",
-              "href": "https://example.com"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-]]></sourcecode>
+    "remarks": [
+      {
+        "description": [
+          "For more information about the .example",
+          " registry policy relating to DS record TTL changes,",
+          "see https://example.com"
+        ],
+        "links": [
+          {
+            "rel": "related",
+            "title": ".Example Registry DNS TTL Policy",
+            "href": "https://example.com"
+          }
+        ]
+      }
+    ]
+  }
+}]]></sourcecode>
 
 <t>
 Example nameserver object:
@@ -184,25 +152,52 @@ Example nameserver object:
 <sourcecode><![CDATA[{
   "objectClassName": "nameserver",
   "ldhName": "ns1.example.com",
-  "ttl0_data": [
-    {
-      "types": [
-        "A",
-        "AAAA"
-      ],
-      "value": 86400,
-      "remarks": [
-        {
-          "description": [
-            "The .example registry does not permit TTL ",
-            "values for nameservers to be changed."
-          ]
-        }
-      ]
-    }
-  ]
+  "ttl0_data": {
+    "values": {
+      "A": 86400,
+      "AAAA": 86400
+    },
+    "remarks": [
+      {
+        "description": [
+          "The .example registry does not permit TTL ",
+          "values for nameservers to be changed."
+        ]
+      }
+    ]
+  }
 }
 ]]></sourcecode>
+
+<section>
+<name>DNS record types and TTL values</name>
+
+<t>
+The DNS record type mnemonics that appear as the property names in <tt>values</tt> objects <bcp14>MUST</bcp14> be in all capitals and <bcp14>MUST</bcp14> be registered with IANA in <xref target="IANA-RRTYPES"/>.
+TTL values <bcp14>MUST</bcp14> be unsigned integers in the range 0-2,147,483,647.
+</t>
+
+<t>
+Many RDAP clients make use of frameworks which automatically "hydrate" objects using JSON data received in RDAP responses.
+As a result, RDAP clients which use these frameworks may need to explicitly carve out the <tt>values</tt> property of <tt>ttl0_data</tt> elements,
+since the set of possible DNS record mnemonics is not static, as new DNS record types are added to <xref target="IANA-RRTYPES"/> regularly.
+</t>
+
+<t>
+In practice, the number of DNS record types that are likely to observed "in the wild" is small,
+and will only change as the result of a significant evolution to the DNS protocol itself,
+similar to that brought about by <xref target="RFC9364"/>, or which might result from <xref target="I-D.ietf-deleg"/>.
+</t>
+
+<t>
+For domain objects, the list of expected DNS record types is <tt>NS</tt>, <tt>DS</tt>, <tt>A</tt> and <tt>AAAA</tt>.
+</t>
+
+<t>
+For nameserver objects, the list of expected DNS record types is just <tt>A</tt> and <tt>AAAA</tt>.
+</t>
+
+</section><!-- types and values -->
 
 <section anchor="rdap-conformance">
 
@@ -267,6 +262,7 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 <section>
 <name>Changes from 02 to 03</name>
 <ol>
+<li>Switch to array model to object model, based on WG feedback.</li>
 </ol>
 </section>
 
@@ -321,6 +317,13 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 
 </section>
 
+<section>
+<name>Acknowledgements</name>
+<t>
+The author wishes to thank Andy Newton, Pawel Kowalik, and Maarten Wullink for their constructive feedback and advice during the development of this document.
+</t>
+</section>
+
 </middle>
 
 <back>
@@ -347,8 +350,10 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 <name>Informative References</name>
 
 &RFC5730;
+&RFC9364;
 &RFC9803;
 &draft-ietf-regext-rdap-extensions;
+&draft-ietf-deleg;
 </references>
 
 </back>
