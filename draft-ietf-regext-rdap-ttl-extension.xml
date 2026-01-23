@@ -119,7 +119,7 @@ The <tt>ttl0_data</tt> property is an object which has the following properties:
 </ul>
 
 <t>
-As specified in <xref section="8" sectionFormat="of" target="RFC2181"/>, a TTL value is a "an unsigned number, with a minimum value of 0, and a maximum value of 2147483647. That is, a maximum of 2^31 - 1."
+As specified in <xref section="8" sectionFormat="of" target="RFC2181"/>, a TTL value is a "an unsigned number, with a minimum value of 0, and a maximum value of 2147483647. That is, a maximum of 2^31 - 1.". TTL values are represented as JSON numbers.
 </t>
 
 <t>
