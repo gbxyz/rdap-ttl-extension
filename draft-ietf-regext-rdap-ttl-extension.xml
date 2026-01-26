@@ -269,12 +269,53 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 
 </section><!-- security considerations -->
 
+<section anchor="impl-status" removeInRFC="true"><name>Implementation status</name>
+
+<section><name>ICANN RDAP</name>
+
+<t>
+Organization: ICANN
+</t>
+
+<t>
+Name: ICANN RDAP
+</t>
+
+<t>
+Description: ICANN RDAP contains an RDAP client, server, and common libraries.
+</t>
+
+<t>
+Level of maturity: Mature
+</t>
+
+<t>
+Coverage: All aspects of the protocol are implemented.
+</t>
+
+<t>
+Licensing: Apache License, Version 2.0 or MIT License.
+</t>
+
+<t>
+Contact: globalsupport@icann.org
+</t>
+
+<t>
+URL: https://github.com/icann/icann-rdap
+</t>
+
+</section><!-- ICANN RDAP Client -->
+
+</section><!-- implementation status -->
+
 <section anchor="changes" removeInRFC="true"><name>Change Log</name>
 
 <section>
 <name>Changes from 05 to 06</name>
 <ol>
   <li>Add missing change log entries to assist in IESG review.</li>
+	<li>Added <xref target="impl-status"/>.</li>
 </ol>
 </section>
 
