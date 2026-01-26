@@ -28,7 +28,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-05"
+  docName="draft-ietf-regext-rdap-ttl-extension-06"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -270,6 +270,31 @@ are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>
 </section><!-- security considerations -->
 
 <section anchor="changes" removeInRFC="true"><name>Change Log</name>
+
+<section>
+<name>Changes from 05 to 06</name>
+<ol>
+  <li>Add missing change log entries to assist in IESG review.</li>
+</ol>
+</section>
+
+<section>
+<name>Changes from 04 to 05</name>
+<ol>
+  <li>Clarify that TTL values are represented using JSON numbers.</li>
+</ol>
+</section>
+
+<section>
+<name>Changes from 03 to 04</name>
+<t>Updates based on feedback during WGLC:</t>
+<ol>
+  <li>Remove the xref in the Abstract to avoid issues when rendered as plaintext;</li>
+  <li>Refer to RRsets instead of resource records since <xref target="RFC2181"/> requires the TTL of all the records in an RRset to be the same;</li>
+  <li>Reference <xref target="RFC2181"/> which defines what a TTL is.</li>
+  <li>Clarify that clients need to handle (even if to ignore) unexpected record types.</li>
+</ol>
+</section>
 
 <section>
 <name>Changes from 02 to 03</name>
