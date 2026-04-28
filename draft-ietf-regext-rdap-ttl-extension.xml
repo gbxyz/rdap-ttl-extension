@@ -28,7 +28,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-07"
+  docName="draft-ietf-regext-rdap-ttl-extension-08"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -64,7 +64,7 @@
 <workgroup>Registration Extensions (REGEXT)</workgroup>
 
 <abstract><t>
-This document describes an extension to the Registration Data Access Protocol which allows the Time-To-Live (TTL) values for relevant DNS record types to be included in RDAP responses.
+This document specifies an extension to the Registration Data Access Protocol which allows the Time-To-Live (TTL) values for relevant DNS record types to be included in RDAP responses.
 </t></abstract>
 
 <note title="About this draft" removeInRFC="true"><t>
@@ -80,6 +80,7 @@ The source for this draft, and an issue tracker, may can be found at <eref targe
 <t>
 While <xref target="RFC9083"></xref> allows RDAP server operators to provide information about the content of the <tt>NS</tt>, <tt>DS</tt>, <tt>A</tt> and <tt>AAAA</tt> RRset(s) (see <xref section="5" sectionFormat="of" target="RFC9499"/>) which are published in the DNS for a given registry object (domain or host object),
 it does not provide a mechanism to allow the Time-To-Live (TTL) (see <xref section="5" sectionFormat="of" target="RFC9499"/>) values of those RRsets to be included in responses.
+Inclusion of these values in RDAP responses, in addition to nameservers, glue IP addresses, and DS records, allows out-of-band debugging of the DNS configuration of troublesome domain names.
 </t>
 
 <t>
@@ -99,6 +100,10 @@ but registry operators do not need to implement that extension in their EPP serv
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown here.
 </t>
 
+<t>
+This document makes use of the terms defined in <xref section="1.1" sectionFormat="of" target="RFC9083"/>.
+</t>
+
 </section><!-- conventions -->
 
 <section anchor="rdap-response-specification">
@@ -106,7 +111,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 <name>RDAP Response Specification</name>
 
 <t>
-Servers which support this extension <bcp14>MAY</bcp14> include a <tt>ttl0_data</tt> property in any domain and nameserver objects included in RDAP responses.
+Servers that support this extension <bcp14>MAY</bcp14> include a "<tt>ttl0_data</tt>" property in any domain (<xref section="5.3" sectionFormat="of" target="RFC9083"/>) and nameserver (<xref section="5.2" sectionFormat="of" target="RFC9083"/>) objects included in RDAP responses.
 </t>
 
 <t>
@@ -123,7 +128,7 @@ As specified in <xref section="8" sectionFormat="of" target="RFC2181"/>, a TTL v
 </t>
 
 <t>
-Example domain object:
+An example domain object with valid "<tt>ttl0_data</tt>" attribute is provided below. Readers should refer to <xref target="RFC9083"/> for a description of the other objects listed in the example.
 </t>
 
 <sourcecode><![CDATA[{
@@ -154,7 +159,7 @@ Example domain object:
 }]]></sourcecode>
 
 <t>
-Example nameserver object:
+An example nameserver object with valid "<tt>ttl0_data</tt>" attribute is provided below.
 </t>
 
 <sourcecode><![CDATA[{
@@ -178,7 +183,7 @@ Example nameserver object:
 ]]></sourcecode>
 
 <section>
-<name>DNS record types and TTL values</name>
+<name>DNS record Types and TTL Values</name>
 
 <t>
 The DNS record type mnemonics that appear as the property names in <tt>values</tt> objects <bcp14>MUST</bcp14> be in all capitals and <bcp14>MUST</bcp14> be registered with IANA in <xref target="IANA-RRTYPES"/>.
@@ -228,7 +233,7 @@ Servers returning responses containing TTL values <bcp14>MUST</bcp14> include th
 <name>IANA Considerations</name>
 
 <t>
-IANA is requested to register the following value in the RDAP Extensions Registry:
+IANA is requested to register the following value in the <xref target="IANA-RDAP-EXTENSIONS">RDAP Extensions Registry</xref>:
 </t>
 
 <t>
@@ -262,9 +267,10 @@ Security services for the extension specified in this document are described in 
 </t>
 
 <t>
-This document only concerns itself with the representation of configure TTL
-values for domain and host objects. The security implications of those values
-are described further in <xref section="6" sectionFormat="of" target="RFC9803"/>.
+This document only concerns itself with the representation of configured TTL
+values for domain and host objects. Such configuration is out of scope. Readers
+may refer to <xref section="6" sectionFormat="of" target="RFC9803"/> for the
+security implications of configuring those values.
 </t>
 
 </section><!-- security considerations -->
@@ -488,6 +494,16 @@ The author wishes to thank Andy Newton, Pawel Kowalik, and Maarten Wullink for t
     </author>
   </front>
 </reference>
+
+<reference anchor="IANA-RDAP-EXTENSIONS" target="https://www.iana.org/assignments/rdap-extensions/rdap-extensions.xhtml">
+  <front>
+    <title>RDAP Extensions</title>
+    <author>
+      <organization>IANA</organization>
+    </author>
+  </front>
+</reference>
+
 </references>
 
 <references>
