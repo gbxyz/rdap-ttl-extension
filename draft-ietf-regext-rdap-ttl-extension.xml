@@ -28,7 +28,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-08"
+  docName="draft-ietf-regext-rdap-ttl-extension-09"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -80,7 +80,7 @@ The source for this draft, and an issue tracker, may can be found at <eref targe
 <t>
 While <xref target="RFC9083"></xref> allows RDAP server operators to provide information about the content of the <tt>NS</tt>, <tt>DS</tt>, <tt>A</tt> and <tt>AAAA</tt> RRset(s) (see <xref section="5" sectionFormat="of" target="RFC9499"/>) which are published in the DNS for a given registry object (domain or host object),
 it does not provide a mechanism to allow the Time-To-Live (TTL) (see <xref section="5" sectionFormat="of" target="RFC9499"/>) values of those RRsets to be included in responses.
-Inclusion of these values in RDAP responses, in addition to nameservers, glue IP addresses, and DS records, allows out-of-band debugging of the DNS configuration of troublesome domain names.
+Inclusion of these values in RDAP responses (in addition to nameservers, glue IP addresses, and DS records) allows out-of-band debugging of the DNS configuration of troublesome domain names.
 </t>
 
 <t>
@@ -215,7 +215,7 @@ but registry operators do not need to implement that extension in their EPP serv
 
 <t>
 Many RDAP clients make use of frameworks which automatically "hydrate" objects using JSON data received in RDAP responses.
-As a result, RDAP clients which use these frameworks may need to explicitly carve out the "<tt>values</tt>" property of "<tt>ttl0_data</tt>" elements.
+As a result, RDAP clients which use these frameworks may <bcp14>SHOULD</bcp14> explicitly carve out the "<tt>values</tt>" property of "<tt>ttl0_data</tt>" elements.
 </t>
 
 <t>
@@ -381,6 +381,16 @@ URL: https://metacpan.org/pod/App::rdapper
 <section anchor="changes" removeInRFC="true"><name>Change Log</name>
 
 <section>
+<name>Changes from 08 to 09</name>
+<t>Updates as per directorate review:</t>
+<ol>
+	<li>Improved wording in the last sentence of the first paragraph of <xref target="introduction"/>.</li>
+	<li>Add <bcp14>SHOULD</bcp14> keyword in <xref target="rdap-clients"/> to clarify the need to carve out the "<tt>values</tt>" property of "<tt>ttl0_data</tt>" elements.</li>
+	<li>Updated <xref target="thx"/>.</li>
+</ol>
+</section>
+
+<section>
 <name>Changes from 07 to 08</name>
 <t>Updates as per AD review:</t>
 <ol>
@@ -486,8 +496,9 @@ URL: https://metacpan.org/pod/App::rdapper
 <section anchor="thx">
 <name>Acknowledgements</name>
 <t>
-The author wishes to thank Andy Newton, Pawel Kowalik, and Maarten Wullink for their constructive feedback and advice during the development of this document.
+The author wishes to thank the following for their constructive feedback and advice during the development of this document:
 </t>
+<t>Andy Newton, Pawel Kowalik, Maarten Wullink, Mohamed Boucadair, Vijay K. Gurbani, Di Ma, Nabeel Cocker.</t>
 </section>
 
 </middle>
