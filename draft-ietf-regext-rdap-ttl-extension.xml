@@ -215,7 +215,7 @@ but registry operators do not need to implement that extension in their EPP serv
 
 <t>
 Many RDAP clients make use of frameworks which automatically "hydrate" objects using JSON data received in RDAP responses.
-As a result, RDAP clients which use these frameworks may <bcp14>SHOULD</bcp14> explicitly carve out the "<tt>values</tt>" property of "<tt>ttl0_data</tt>" elements.
+As a result, RDAP clients which use these frameworks <bcp14>SHOULD</bcp14> explicitly carve out the "<tt>values</tt>" property of "<tt>ttl0_data</tt>" elements.
 </t>
 
 <t>
