@@ -28,7 +28,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rdap-ttl-extension-09"
+  docName="draft-ietf-regext-rdap-ttl-extension-10"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -381,6 +381,15 @@ URL: https://metacpan.org/pod/App::rdapper
 <section anchor="changes" removeInRFC="true"><name>Change Log</name>
 
 <section>
+<name>Changes from 09 to 10</name>
+<t>Updates as per IESG evaluation:</t>
+<ol>
+	<li>Minor typographic edits.</li>
+	<li>Made <xref target="RFC9499"/> a normative reference (thanks Ketan Talaulika)</li>
+</ol>
+</section>
+
+<section>
 <name>Changes from 08 to 09</name>
 <t>Updates as per directorate review:</t>
 <ol>
@@ -498,7 +507,7 @@ URL: https://metacpan.org/pod/App::rdapper
 <t>
 The author wishes to thank the following for their constructive feedback and advice during the development of this document:
 </t>
-<t>Andy Newton, Pawel Kowalik, Maarten Wullink, Mohamed Boucadair, Vijay K. Gurbani, Di Ma, Nabeel Cocker.</t>
+<t>Andy Newton, Pawel Kowalik, Maarten Wullink, Mohamed Boucadair, Vijay K. Gurbani, Di Ma, Nabeel Cocker, Ketan Talaulika.</t>
 </section>
 
 </middle>
@@ -513,6 +522,7 @@ The author wishes to thank the following for their constructive feedback and adv
 &RFC7481;
 &RFC8174;
 &RFC9083;
+&RFC9499;
 
 <reference anchor="IANA-RRTYPES" target="https://www.iana.org/assignments/dns-parameters#dns-parameters-4">
   <front>
@@ -538,7 +548,6 @@ The author wishes to thank the following for their constructive feedback and adv
 <name>Informative References</name>
 
 &RFC5730;
-&RFC9499;
 <!--&RFC9364;-->
 &RFC9803;
 &draft-ietf-regext-rdap-extensions;
